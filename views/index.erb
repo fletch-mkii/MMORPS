@@ -1,0 +1,28 @@
+<h1>Play Rock Paper Scissors!</h1>
+
+<ul>
+<h2>Scores</h2>
+<h4>Player: <%=@player_score%></h4>
+<h4>CPU: <%=@cpu_score%></h4>
+</ul>
+<%if !@player_choice.nil?%>
+  <h3>Player chose <%=@player_choice%>.  CPU chose <%=@cpu_choice%>.  <%=@message%></h3>
+  <%unless @winner.nil?%>
+  <h3><%=@winner%> wins.</h3>
+  <%end%>
+<%end%>
+
+<%if @winner.nil?%>
+  <form action="/index" method="post">
+    <li><label for="choice">Make your choice:</label>
+    <input type="submit" name="choice" value="Rock">
+    <input type="submit" name="choice" value="Paper">
+    <input type="submit" name="choice" value="Scissors">
+  </form>
+<%end%>
+
+<%unless @winner.nil?%>
+  <form action="/reset" method="get">
+    <input type="submit" name="reset" value="Play Again?">
+  </form>
+<%end%>
